@@ -5,7 +5,8 @@
     "dev": "vite --open --host",
     "start": "vite --host",
     "build": "vue-tsc --noEmit && vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "plugin": "tsc ./plugins/index.ts"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.10.2",
