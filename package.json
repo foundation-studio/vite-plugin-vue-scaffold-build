@@ -1,6 +1,8 @@
 {
   "name": "vite-plugin-vue-scaffold-build",
-  "version": "0.1.1.Alpha.20220507",
+  "version": "0.1.1",
+  "description": "构建vite项目优化",
+  "main": "src/index.ts",
   "files": [
     "src/index.ts"
   ],
@@ -14,5 +16,16 @@
     "vite": "^2.9.7",
     "vue": "^3.2.33",
     "vue-tsc": "^0.2.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:foundation-studio/vite-plugin-vue-scaffold-build.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/foundation-studio/vite-plugin-vue-scaffold-build/issues"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/Dengtianjian"
   }
 }
