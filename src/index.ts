@@ -11,7 +11,6 @@ interface IOptions {
 }
 
 const VuePath: string = "/assets/vue.js";
-const ComponentsSaveBasePath: string = "components";
 
 /**
  * 扫描目录并且找出 vue组件
@@ -28,7 +27,7 @@ function scanComponents(dirPath: string): Record<string, string> {
     } else {
       if (file.endsWith(".vue")) {
         const fileName: string = file.slice(0, file.lastIndexOf("."));
-        components[`${ComponentsSaveBasePath}/${fileName}`] = `${process.cwd()}/${dirPath}/${file}`;
+        components[fileName] = `${process.cwd()}/${dirPath}/${file}`;
       }
     }
   });
@@ -72,7 +71,6 @@ export default function (rawOptions: IOptions, open = true): PluginOption {
     build: {
       cssCodeSplit: true,
       rollupOptions: {
-        input,
         output: {
           minifyInternalExports: false,
           assetFileNames,
@@ -96,6 +94,7 @@ export default function (rawOptions: IOptions, open = true): PluginOption {
     config.build.rollupOptions.external = ["vue"];
 
     if (!rawOptions.buildProject) {
+      config.build.rollupOptions.input = input;
       if (rawOptions.buildComponents) {
         config.build.lib = {
           entry: "",
