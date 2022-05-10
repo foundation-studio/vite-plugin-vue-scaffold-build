@@ -2,12 +2,14 @@
   "name": "vite-plugin-vue-scaffold-build",
   "version": "0.1.1",
   "description": "构建vite项目优化",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "files": [
-    "src/index.ts"
+    "dist/index.js"
   ],
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "vue-tsc --noEmit && vite build"
+    "dev": "vue-tsc --noEmit && vite build",
+    "build": "tsc"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.10.2",

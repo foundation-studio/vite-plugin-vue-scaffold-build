@@ -1,8 +1,7 @@
+// @ts-nocheck
+
 import type { PluginOption, UserConfig } from "vite";
 import FS from "fs";
-import log from "./log";
-
-log.clear();
 
 interface IOptions {
   input?: string | string[],
@@ -89,7 +88,6 @@ export default function (rawOptions: IOptions, open = true): PluginOption {
     }
   }
   if (open) {
-    // @ts-ignore
     config.build.rollupOptions.output.paths = paths;
     config.build.rollupOptions.external = ["vue"];
 
