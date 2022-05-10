@@ -24,8 +24,5 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/foundation-studio/vite-plugin-vue-scaffold-build/issues"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/Dengtianjian"
   }
 }
