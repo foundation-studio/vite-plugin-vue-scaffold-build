@@ -1,12 +1,11 @@
 {
   "name": "vite-plugin-vue-scaffold-build",
   "version": "0.1.1.Alpha.20220507",
+  "files": [
+    "src/index.ts"
+  ],
   "scripts": {
-    "dev": "vite --open --host",
-    "start": "vite --host",
-    "build": "vue-tsc --noEmit && vite build",
-    "serve": "vite preview",
-    "plugin": "tsc ./plugins/index.ts"
+    "build": "vue-tsc --noEmit && vite build"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.10.2",
