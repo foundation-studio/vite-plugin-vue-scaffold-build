@@ -9,20 +9,16 @@ Node >= 17 & < 18
 3. Vue3.x
 6. TypeScript
 
-# 运行
-- 克隆代码
-```shell
-git clone https://github.com/foundation-studio/vite-plugin-vue-scaffold-build
-```
-- 安装依赖
-```shell
-pnpm i
-```
-- 运行  
-```shell
-pnpm build
-```
 # 使用
+安装
+```shell
+npm i vite-plugin-vue-scaffold-build
+```
+OR
+```shell
+pnpm i vite-plugin-vue-scaffold-build
+```
+插件使用
 ```ts
 //* vite.config.js
 
