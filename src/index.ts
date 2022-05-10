@@ -1,12 +1,11 @@
-// @ts-nocheck
-
 import type { PluginOption, UserConfig } from "vite";
 import FS from "fs";
 
 interface IOptions {
   input?: string | string[],
   buildComponents?: boolean,
-  buildProject?: boolean
+  buildProject?: boolean,
+  withVue?: boolean
 }
 
 const VuePath: string = "/assets/vue.js";
@@ -34,7 +33,13 @@ function scanComponents(dirPath: string): Record<string, string> {
   return components;
 }
 
-export default function (rawOptions: IOptions, open = true): PluginOption {
+export default function (rawOptions: IOptions = {
+  withVue: true
+}, open = true): PluginOption {
+  if (!Object.hasOwn(rawOptions, "withVue")) {
+    rawOptions['withVue'] = true;
+  }
+
   const options: PluginOption = {
     name: "tianjian/vite-plugin-vue-scaffold-build",
     apply: "build"
@@ -60,13 +65,20 @@ export default function (rawOptions: IOptions, open = true): PluginOption {
   let assetFileNames: string = "assets/[ext]/[name]-[hash].[extname]";
   if (rawOptions.buildComponents) {
     assetFileNames = "[ext]/[name]-[hash].[extname]";
-
-    input['vue'] = "vue";
   } else {
     input['assets/vue'] = "vue";
   }
+  if (rawOptions.withVue && !rawOptions.buildProject) {
+    delete input['assets/vue'];
+    input['vue'] = "vue";
+  }
 
-  const config: UserConfig = {
+  let config: UserConfig = {};
+  config.build = {};
+  config.build.rollupOptions = {};
+  config.build.rollupOptions.output = {};
+
+  config = {
     build: {
       cssCodeSplit: true,
       rollupOptions: {
@@ -87,21 +99,21 @@ export default function (rawOptions: IOptions, open = true): PluginOption {
       }
     }
   }
+
   if (open) {
+    // @ts-ignore
     config.build.rollupOptions.output.paths = paths;
     config.build.rollupOptions.external = ["vue"];
 
     if (!rawOptions.buildProject) {
       config.build.rollupOptions.input = input;
-      if (rawOptions.buildComponents) {
-        config.build.lib = {
-          entry: "",
-          formats: ["es"],
-          fileName: (format) => {
-            return "[name].js";
-          }
-        };
-      }
+      config.build.lib = {
+        entry: "",
+        formats: ["es"],
+        fileName: (format) => {
+          return "[name].js";
+        }
+      };
     }
 
     options['config'] = () => {

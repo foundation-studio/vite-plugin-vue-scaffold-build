@@ -6,8 +6,8 @@ import build from "./src";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue(), build({
-    input: "src/target",
-    buildComponents: true,
-    buildProject: false
+    input: "src/components",
+    withVue: false,
+    buildComponents: true
   })]
 });
