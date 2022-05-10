@@ -64,3 +64,6 @@ type TBuild = (rawOptions:IOptions,open:boolean)=> PluginOption;
 扫描`input`选项的目录后找出`.vue`文件，然后编译成`.js`文件
 ### buildProject：boolean，是否是构建项目状态
 会按正常流程构建整个项目，但插件会对构建项目一些参数等进行优化。
+## open 开启插件
+如果是`false`，仅对构建项目过程些许优化  
+如不想使用插件，就需要把插件从vite的`plugins`选项中注释掉
