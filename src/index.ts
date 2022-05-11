@@ -36,6 +36,9 @@ function scanComponents(dirPath: string): Record<string, string> {
 export default function (rawOptions: IOptions = {
   withVue: true
 }, open = true): PluginOption {
+  if (rawOptions.buildComponents && !rawOptions.input) {
+    throw new Error("构建组件模式下，缺少组件文件路径，也就是input参数值");
+  }
   if (!Object.hasOwn(rawOptions, "withVue")) {
     rawOptions['withVue'] = true;
   }
@@ -106,14 +109,16 @@ export default function (rawOptions: IOptions = {
     config.build.rollupOptions.external = ["vue"];
 
     if (!rawOptions.buildProject) {
-      config.build.rollupOptions.input = input;
-      config.build.lib = {
-        entry: "",
-        formats: ["es"],
-        fileName: (format) => {
-          return "[name].js";
-        }
-      };
+      if (Object.keys(input).length) {
+        config.build.rollupOptions.input = input;
+        config.build.lib = {
+          entry: "",
+          formats: ["es"],
+          fileName: (format) => {
+            return "[name].js";
+          }
+        };
+      }
     }
 
     options['config'] = () => {
