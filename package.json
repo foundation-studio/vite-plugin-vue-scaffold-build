@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-vue-scaffold-build",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "构建vite项目优化",
   "main": "dist/index.js",
   "files": [
