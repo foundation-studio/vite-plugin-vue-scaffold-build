@@ -5,10 +5,9 @@ interface IOptions {
   input?: string | string[],
   buildComponents?: boolean,
   buildProject?: boolean,
-  withVue?: boolean
+  withVue?: boolean,
+  vuePath?: string
 }
-
-const VuePath: string = "/assets/vue.js";
 
 /**
  * 扫描目录并且找出 vue组件
@@ -48,7 +47,8 @@ export default function (rawOptions: IOptions = {
     apply: "build"
   }
   const input: Record<string, string> = {};
-  const paths: Record<string, string> = { "vue": VuePath };
+
+  const paths: Record<string, string> = { "vue": rawOptions.vuePath ?? "/vue.js" };
 
   if (!rawOptions.buildProject && open && rawOptions.buildComponents) {
     if (rawOptions.input) {

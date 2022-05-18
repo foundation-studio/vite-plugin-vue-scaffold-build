@@ -6,9 +6,10 @@ import build from "./src";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue(), build({
-    // input: "src/components",
-    withVue: false,
-    // buildComponents: true
-    buildProject: true
+    input: "src/components",
+    // withVue: false,
+    buildComponents: true,
+    // buildProject: true,
+    vuePath: "http://www.cooocc.com/assets/vue.js"
   })]
 });
