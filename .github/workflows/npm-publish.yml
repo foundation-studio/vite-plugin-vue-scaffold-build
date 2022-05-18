@@ -16,6 +16,8 @@ jobs:
         with:
           node-version: 18.0.0
           registry-url: https://registry.npmjs.org/
+      - run: rm -rf package-lock.json
+      - run: npm install
       - run: npm ci
       - run: npm run build
       - run: npm publish
