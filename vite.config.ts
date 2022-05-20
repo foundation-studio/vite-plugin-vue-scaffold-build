@@ -7,7 +7,7 @@ import build from "./src";
 export default defineConfig({
   plugins: [vue(), build({
     input: "src/components",
-    // withVue: false,
+    withVue: false,
     buildComponents: true,
     // buildProject: true,
     vuePath: "http://www.cooocc.com/assets/vue.js"

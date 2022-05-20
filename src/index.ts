@@ -1,5 +1,6 @@
 import type { PluginOption, UserConfig } from "vite";
 import FS from "fs";
+import Version from "./version";
 
 interface IOptions {
   input?: string | string[],
@@ -88,6 +89,7 @@ export default function (rawOptions: IOptions = {
         output: {
           minifyInternalExports: false,
           assetFileNames,
+          footer: `export const __pkg_versions_${Date.now()}__ = '${Version()}';`,
           // chunkFileNames(chunkInfo) {
           //   console.log(chunkInfo);
           //   return `vue.js`;
